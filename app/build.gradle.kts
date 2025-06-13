@@ -39,7 +39,15 @@ android {
 }
 
 dependencies {
+    // Librerias especificas
+    implementation ("androidx.compose.material:material-icons-extended:1.6.1")
+    implementation("androidx.wear.compose:compose-material:1.4.1")
+    implementation("androidx.wear.tiles:tiles-material:1.5.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
+    implementation("androidx.work:work-runtime-ktx:2.10.1")
 
+    // Librerias estandar
     implementation(libs.play.services.wearable)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
@@ -50,6 +58,7 @@ dependencies {
     implementation(libs.wear.tooling.preview)
     implementation(libs.activity.compose)
     implementation(libs.core.splashscreen)
+    implementation(libs.material3.android)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
