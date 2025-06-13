@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -39,6 +40,9 @@ android {
 }
 
 dependencies {
+    // Librerias de Google Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
+    implementation("com.google.firebase:firebase-analytics")
     // Librerias especificas
     implementation ("androidx.compose.material:material-icons-extended:1.6.1")
     implementation("androidx.wear.compose:compose-material:1.4.1")
@@ -59,6 +63,7 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.core.splashscreen)
     implementation(libs.material3.android)
+    implementation(libs.firebase.messaging.ktx)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)

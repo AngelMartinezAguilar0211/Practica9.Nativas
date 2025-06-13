@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828055479808",
+    "project_id": "practica9nativas",
+    "storage_bucket": "practica9nativas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828055479808:android:7ae57b376f39b843e69ae5",
+        "android_client_info": {
+          "package_name": "com.example.practica9nativas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBepVnyuI2tIEXhlGVtPq7x3zciyCnV5E0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

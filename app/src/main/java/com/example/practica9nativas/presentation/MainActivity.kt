@@ -1,9 +1,11 @@
 // MainActivity.kt
 package com.example.practica9nativas.presentation
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -12,26 +14,37 @@ import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.Button
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.ScalingLazyColumn
-import androidx.wear.compose.material.TimeText
 import kotlinx.coroutines.launch
+import android.widget.Toast
+import android.Manifest
 
 
 class MainActivity : ComponentActivity() {
-    // Inicializar el DataStore
+    // Inicializar DataStore
     private lateinit var hydrationDataStore: HydrationDataStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Crear instancia del DataStore
         hydrationDataStore = HydrationDataStore(this)
+        // Solicitud de permisos para Firebase Analytics
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val requestPermissionLauncher = registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if(!isGranted){
+                    Toast.makeText(this, "Permiso requerido para recibir notificaciones", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
         setContent {
             MaterialTheme {
                 HydrationReminderScreen(hydrationDataStore)
@@ -49,8 +62,6 @@ fun HydrationReminderScreen(hydrationDataStore: HydrationDataStore) {
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        //item { TimeText() }
-        //item { Spacer(modifier = Modifier.height(4.dp)) }
         item { Icon(Icons.Default.LocalDrink, contentDescription = "Agua", modifier = Modifier.size(48.dp)) }
         item { Spacer(modifier = Modifier.height(8.dp)) }
         item { Text("Vasos de agua hoy: $waterCount", style = MaterialTheme.typography.titleMedium) }
