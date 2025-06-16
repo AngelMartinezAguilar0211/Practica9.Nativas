@@ -20,4 +20,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Practica9.Nativas"
-include(":app")
+include(":Practica9NativasWearOS")
+include(":Practica9NativasAndroid")
+include(":core")
